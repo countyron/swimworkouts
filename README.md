@@ -1,42 +1,19 @@
-# Metric Swim Workout Library - Version 3 Supabase Sync
+# Metric Swim Workout Library v4
 
-This version adds Supabase cloud sync so your workout library/profile can be shared between iPhone, iPad and laptop.
+V4 fixes the localStorage quota issue for large libraries such as 1,500 workouts.
 
-## 1. Create Supabase project
+## Required Supabase step
+Run `supabase_schema_v4.sql` in Supabase SQL Editor.
 
-Create a Supabase project, then copy:
+## Upgrade from v3
+1. Upload all v4 files to GitHub Pages.
+2. Open the app and sign in.
+3. Click `Load from cloud`.
+4. If only v3 data exists, the app loads the legacy `user_workout_libraries` record without saving it to localStorage.
+5. Click `Sync to cloud` to convert to the new `workouts_v4` row-per-workout structure.
 
-- Project URL
-- Publishable key, or legacy anon public key
-
-## 2. Create the database table
-
-Open Supabase Dashboard > SQL Editor, paste and run:
-
-```sql
--- use the included supabase_schema.sql file
-```
-
-The file creates `public.user_workout_libraries`, enables Row Level Security, and adds policies so each signed-in user can only read/write their own workout library.
-
-## 3. Open the app
-
-Open `index.html` or host this folder on GitHub Pages.
-
-In the **Cloud Sync** panel:
-
-1. Paste Supabase Project URL.
-2. Paste Supabase publishable/anon key.
-3. Enter your email.
-4. Click **Save connection**.
-5. Click **Send magic link**.
-6. Open the email link on the same device/browser.
-7. Click **Sync to cloud**.
-
-On another device, use the same URL/key/email, sign in, then click **Load from cloud**.
-
-## Notes
-
-- This is still a client-side static app suitable for GitHub Pages.
-- Do not use a Supabase `service_role` key in this app.
-- The publishable/anon key is intended for browser use when Row Level Security policies are correctly configured.
+## What changed
+- IndexedDB local cache.
+- Row-per-workout Supabase table.
+- Profile stored separately.
+- Keeps metric-only 25m/50m, pace per 100m, effort zones and send-offs.
