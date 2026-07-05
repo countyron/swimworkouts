@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Metric Swim Workout Library v4.1</title>
+<title>Metric Swim Workout Library v4.2</title>
 <meta name="theme-color" content="#0477bf" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header class="app-header"><div><p class="eyebrow">Metric only • 25m / 50m pools • IndexedDB + Supabase</p><h1>Swim Workout Library <span class="version">v4.1</span></h1></div></header>
+<header class="app-header"><div><p class="eyebrow">Metric only • 25m / 50m pools • IndexedDB + Supabase</p><h1>Swim Workout Library <span class="version">v4.2</span></h1></div></header>
 <main class="shell">
 <section class="panel"><div class="panel-heading"><h2>Profile</h2><span id="saveStatus" class="status-pill">IndexedDB cache</span></div><div class="settings-grid"><label>Pool<select id="poolSelect"><option value="25">25m</option><option value="50">50m</option></select></label><label>Max 100m time<input id="max100Input" value="1:20" /></label><label>Session mode<select id="modeSelect"><option value="recovery">Recovery</option><option value="normal" selected>Normal</option><option value="hard">Hard</option></select></label><label>Round send-offs<select id="roundSelect"><option value="5" selected>Nearest 5 sec</option><option value="10">Nearest 10 sec</option></select></label></div></section>
 <section class="panel"><div class="panel-heading"><h2>Cloud Sync</h2><span id="cloudStatus" class="status-pill">Not connected</span></div><div class="settings-grid cloud-grid"><label>Supabase Project URL<input id="supabaseUrl" placeholder="https://your-project.supabase.co" /></label><label>Supabase publishable / anon key<input id="supabaseKey" placeholder="sb_publishable_..." /></label><label>Email login<input id="supabaseEmail" type="email" /></label><label>Connection<button id="saveSupabaseBtn" class="secondary" type="button">Save connection</button></label></div><div class="button-row"><button id="magicLinkBtn" class="secondary">Send magic link</button><button id="syncUpBtn">Sync to cloud</button><button id="syncDownBtn" class="secondary">Load from cloud</button><button id="signOutBtn" class="danger">Sign out</button></div><p class="small muted">Run <code>supabase_schema_v4.sql</code> in Supabase SQL Editor before syncing. V4.1 uses IndexedDB locally and row-per-workout Supabase storage.</p></section>
@@ -20,5 +20,5 @@
 <template id="cardTemplate"><button class="workout-card"><div class="card-topline"><strong class="card-title"></strong><span class="card-distance"></span></div><p class="card-summary"></p><div class="tag-row"></div></button></template>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="sample-data.js"></script>
-<script src="app.js?v=4.1"></script>
+<script src="app.js?v=4.2"></script>
 </body></html>

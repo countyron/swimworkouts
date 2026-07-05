@@ -1,7 +1,7 @@
 {
-  "name": "Metric Swim Workout Library v4.1",
+  "name": "Metric Swim Workout Library v4.2",
   "short_name": "Swim Sets",
-  "start_url": "./index.html?v=4.1",
+  "start_url": "./index.html?v=4.2",
   "display": "standalone",
   "background_color": "#eff6ff",
   "theme_color": "#0477bf",
