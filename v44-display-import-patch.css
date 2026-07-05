@@ -1,0 +1,8 @@
+/* Metric Swim Workout Library v4.4 import/tasks cleanup patch */
+.import-hidden {
+  display: none !important;
+}
+.compact-import-toggle {
+  padding: 9px 12px;
+  font-size: 0.86rem;
+}
