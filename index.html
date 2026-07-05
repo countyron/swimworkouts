@@ -1,1 +1,187 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Metric Swim Workout Library v4.3</title><meta name="theme-color" content="#0477bf"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css"></head><body><header class="app-header"><div><p class="eyebrow">Metric only • 25m / 50m pools • IndexedDB + Supabase</p><h1>Swim Workout Library <span class="version">v4.3</span></h1></div></header><main class="shell"><section class="panel"><div class="panel-heading"><h2>Profile</h2><span class="status-pill">IndexedDB cache</span></div><div class="settings-grid"><label>Pool<select id="poolSelect"><option value="25">25m</option><option value="50">50m</option></select></label><label>Max 100m time<input id="max100Input" value="1:20"></label><label>Session mode<select id="modeSelect"><option value="recovery">Recovery</option><option value="normal" selected>Normal</option><option value="hard">Hard</option></select></label><label>Round send-offs<select id="roundSelect"><option value="5" selected>Nearest 5 sec</option><option value="10">Nearest 10 sec</option></select></label></div></section><section class="panel"><div class="panel-heading"><h2>Cloud Sync</h2><span id="cloudStatus" class="status-pill">Not connected</span></div><div class="settings-grid cloud-grid"><label>Supabase Project URL<input id="supabaseUrl" placeholder="https://your-project.supabase.co"></label><label>Supabase publishable / anon key<input id="supabaseKey" placeholder="sb_publishable_..."></label><label>Email login<input id="supabaseEmail" type="email"></label><label>Connection<button id="saveSupabaseBtn" class="secondary" type="button">Save connection</button></label></div><div class="button-row"><button id="magicLinkBtn" class="secondary">Send magic link</button><button id="syncUpBtn">Sync to cloud</button><button id="syncDownBtn" class="secondary">Load from cloud</button><button id="signOutBtn" class="danger">Sign out</button></div><p class="small muted">V4.3 checks both the old 2,040-workout legacy library and the new workouts_v4 table. If legacy has more workouts, it loads legacy first so it can be upgraded.</p></section><section class="panel"><div class="panel-heading"><h2>Import</h2><span class="status-pill">Large library ready</span></div><div id="dropZone" class="drop-zone"><strong>Drop .docx or .txt files here</strong><span>Files are parsed locally in your browser.</span><input id="fileInput" type="file" multiple accept=".docx,.txt"></div><div class="button-row"><button id="loadDemoBtn" class="secondary">Load uploaded examples</button><button id="exportBtn" class="secondary">Export JSON</button><label class="button-like secondary" for="jsonImport">Import JSON</label><input id="jsonImport" class="hidden" type="file" accept="application/json,.json"><button id="clearBtn" class="danger">Clear local cache</button></div><p id="importLog" class="small muted"></p></section><section class="toolbar"><input id="searchInput" type="search" placeholder="Search: sprint, kick, threshold, descend, 3000..."><select id="focusFilter"><option value="">All focus</option><option value="speed">Speed</option><option value="technique">Technique</option><option value="kick">Kick</option><option value="endurance">Endurance</option><option value="threshold">Threshold</option></select><select id="distanceFilter"><option value="">All distances</option><option value="0-2499">Under 2500m</option><option value="2500-2999">2500-2999m</option><option value="3000-3499">3000-3499m</option><option value="3500-9999">3500m+</option></select></section><div class="layout"><section class="panel library-panel"><div class="panel-heading"><h2>Library</h2><span id="countBadge" class="status-pill">0 workouts</span></div><div id="workoutList" class="workout-list"></div></section><section class="panel detail-panel"><div id="emptyState" class="empty-state"><h2>Select or import a workout</h2><p>V4.3 avoids localStorage quota errors and fixes incomplete cloud loads.</p></div><article id="workoutDetail" class="hidden"></article></section></div></main><template id="cardTemplate"><button class="workout-card"><div class="card-topline"><strong class="card-title"></strong><span class="card-distance"></span></div><p class="card-summary"></p><div class="tag-row"></div></button></template><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="sample-data.js"></script><script src="app.js?v=4.3"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Metric Swim Workout Library v4.4</title>
+  <meta name="theme-color" content="#0477bf" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Swim Sets" />
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="v44-display-import-patch.css?v=4.4" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Metric only • 25m / 50m pools • IndexedDB + Supabase</p>
+      <h1>Swim Workout Library <span class="version">v4.4</span></h1>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="panel">
+      <div class="panel-heading">
+        <h2>Profile</h2>
+        <span class="status-pill">IndexedDB cache</span>
+      </div>
+
+      <div class="settings-grid">
+        <label>
+          Pool
+          <select id="poolSelect">
+            <option value="25">25m</option>
+            <option value="50">50m</option>
+          </select>
+        </label>
+
+        <label>
+          Max 100m time
+          <input id="max100Input" value="1:20" inputmode="numeric" placeholder="1:20" />
+        </label>
+
+        <label>
+          Session mode
+          <select id="modeSelect">
+            <option value="recovery">Recovery</option>
+            <option value="normal" selected>Normal</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+
+        <label>
+          Round send-offs
+          <select id="roundSelect">
+            <option value="5" selected>Nearest 5 sec</option>
+            <option value="10">Nearest 10 sec</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel cloud-panel">
+      <div class="panel-heading">
+        <h2>Cloud Sync</h2>
+        <span id="cloudStatus" class="status-pill">Not connected</span>
+      </div>
+
+      <div class="settings-grid cloud-grid">
+        <label>
+          Supabase Project URL
+          <input id="supabaseUrl" placeholder="https://your-project.supabase.co" />
+        </label>
+
+        <label>
+          Supabase publishable / anon key
+          <input id="supabaseKey" placeholder="sb_publishable_..." />
+        </label>
+
+        <label>
+          Email login
+          <input id="supabaseEmail" type="email" placeholder="you@example.com" />
+        </label>
+
+        <label>
+          Connection
+          <button id="saveSupabaseBtn" class="secondary" type="button">Save connection</button>
+        </label>
+      </div>
+
+      <div class="button-row">
+        <button id="magicLinkBtn" class="secondary" type="button">Send magic link</button>
+        <button id="syncUpBtn" type="button">Sync to cloud</button>
+        <button id="syncDownBtn" class="secondary" type="button">Load from cloud</button>
+        <button id="signOutBtn" class="danger" type="button">Sign out</button>
+      </div>
+
+      <p class="small muted">
+        V4.4 checks both the old 2,040-workout legacy library and the new workouts_v4 table.
+        Supabase URL/key are prefilled by <code>supabase-config.js</code>. Import tools are hidden by default.
+      </p>
+    </section>
+
+    <section class="panel import-panel">
+      <div class="panel-heading">
+        <h2>Import</h2>
+        <span class="status-pill">Hidden unless needed</span>
+      </div>
+
+      <div id="dropZone" class="drop-zone">
+        <strong>Drop .docx or .txt files here</strong>
+        <span>Files are parsed locally in your browser.</span>
+        <input id="fileInput" type="file" multiple accept=".docx,.txt" />
+      </div>
+
+      <div class="button-row">
+        <button id="loadDemoBtn" class="secondary" type="button">Load uploaded examples</button>
+        <button id="exportBtn" class="secondary" type="button">Export JSON</button>
+        <label class="button-like secondary" for="jsonImport">Import JSON</label>
+        <input id="jsonImport" class="hidden" type="file" accept="application/json,.json" />
+        <button id="clearBtn" class="danger" type="button">Clear local cache</button>
+      </div>
+
+      <p id="importLog" class="small muted"></p>
+    </section>
+
+    <section class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search: sprint, kick, threshold, descend, 3000..." />
+
+      <select id="focusFilter">
+        <option value="">All focus</option>
+        <option value="speed">Speed</option>
+        <option value="technique">Technique</option>
+        <option value="kick">Kick</option>
+        <option value="endurance">Endurance</option>
+        <option value="threshold">Threshold</option>
+      </select>
+
+      <select id="distanceFilter">
+        <option value="">All distances</option>
+        <option value="0-2499">Under 2500m</option>
+        <option value="2500-2999">2500-2999m</option>
+        <option value="3000-3499">3000-3499m</option>
+        <option value="3500-9999">3500m+</option>
+      </select>
+    </section>
+
+    <div class="layout">
+      <section class="panel library-panel">
+        <div class="panel-heading">
+          <h2>Library</h2>
+          <span id="countBadge" class="status-pill">0 workouts</span>
+        </div>
+
+        <div id="workoutList" class="workout-list"></div>
+      </section>
+
+      <section class="panel detail-panel">
+        <div id="emptyState" class="empty-state">
+          <h2>Select or import a workout</h2>
+          <p>V4.4 avoids localStorage quota errors and cleans interval fragments from task names.</p>
+        </div>
+
+        <article id="workoutDetail" class="hidden"></article>
+      </section>
+    </div>
+  </main>
+
+  <template id="cardTemplate">
+    <button class="workout-card" type="button">
+      <div class="card-topline">
+        <strong class="card-title"></strong>
+        <span class="card-distance"></span>
+      </div>
+      <p class="card-summary"></p>
+      <div class="tag-row"></div>
+    </button>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=1"></script>
+  <script src="sample-data.js"></script>
+  <script src="app.js?v=4.3"></script>
+  <script src="v44-display-import-patch.js?v=4.4"></script>
+</body>
+</html>
