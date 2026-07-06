@@ -1,0 +1,63 @@
+/* Metric Swim Workout Library v4.6 UI patch */
+.import-hidden {
+  display: none !important;
+}
+
+.cloud-collapsed > :not(.panel-heading) {
+  display: none !important;
+}
+
+.compact-toggle {
+  padding: 8px 11px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.technical-supabase-field {
+  display: none !important;
+}
+
+.stroke-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #dbeafe;
+}
+
+.notes-toggle {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.coach-notes-collapsed ul,
+.coach-notes-collapsed p,
+.coach-notes-collapsed div:not(:first-child) {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .detail-panel {
+    order: -1;
+  }
+
+  .library-panel {
+    order: 1;
+  }
+
+  .stroke-profile-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .stroke-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

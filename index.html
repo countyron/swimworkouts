@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Metric Swim Workout Library v4.4</title>
+  <title>Metric Swim Workout Library v4.6</title>
   <meta name="theme-color" content="#0477bf" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -11,13 +11,14 @@
 
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="v44-display-import-patch.css?v=4.4" />
+  <link rel="stylesheet" href="v45-cleanup-patch.css?v=4.5" />
+  <link rel="stylesheet" href="v46-ui-patch.css?v=4.6" />
 </head>
 <body>
   <header class="app-header">
     <div>
       <p class="eyebrow">Metric only • 25m / 50m pools • IndexedDB + Supabase</p>
-      <h1>Swim Workout Library <span class="version">v4.4</span></h1>
+      <h1>Swim Workout Library <span class="version">v4.6</span></h1>
     </div>
   </header>
 
@@ -70,12 +71,12 @@
       <div class="settings-grid cloud-grid">
         <label>
           Supabase Project URL
-          <input id="supabaseUrl" placeholder="https://your-project.supabase.co" />
+          <input id="supabaseUrl" value="https://qrjmucaneoplywllrcjh.supabase.co" placeholder="https://your-project.supabase.co" />
         </label>
 
         <label>
           Supabase publishable / anon key
-          <input id="supabaseKey" placeholder="sb_publishable_..." />
+          <input id="supabaseKey" value="sb_publishable_8EFScHJJvGXKr2rhhx_W0A_5C-ku-Re" placeholder="sb_publishable_..." />
         </label>
 
         <label>
@@ -97,8 +98,7 @@
       </div>
 
       <p class="small muted">
-        V4.4 checks both the old 2,040-workout legacy library and the new workouts_v4 table.
-        Supabase URL/key are prefilled by <code>supabase-config.js</code>. Import tools are hidden by default.
+        Supabase URL/key are prefilled. Cloud Sync is collapsible. Import tools are hidden by default.
       </p>
     </section>
 
@@ -159,7 +159,7 @@
       <section class="panel detail-panel">
         <div id="emptyState" class="empty-state">
           <h2>Select or import a workout</h2>
-          <p>V4.4 avoids localStorage quota errors and cleans interval fragments from task names.</p>
+          <p>V4.6 uses cloud sync, IndexedDB caching, collapsible notes, and cleaned workout names.</p>
         </div>
 
         <article id="workoutDetail" class="hidden"></article>
@@ -179,7 +179,6 @@
   </template>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script>
     localStorage.setItem('metricSwimSupabase.v1', JSON.stringify({
       url: 'https://qrjmucaneoplywllrcjh.supabase.co',
@@ -187,13 +186,9 @@
       email: ''
     }));
   </script>
-
   <script src="sample-data.js"></script>
   <script src="app.js?v=4.3"></script>
-  <script src="v44-display-import-patch.js?v=4.4"></script>
-</body>
-</html>
-
-  
+  <script src="v45-cleanup-patch.js?v=4.5"></script>
+  <script src="v46-ui-patch.js?v=4.6"></script>
 </body>
 </html>
