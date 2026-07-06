@@ -3,29 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Metric Swim Workout Library v4.7</title>
+  <title>Metric Swim Workout Library v5.0</title>
   <meta name="theme-color" content="#0477bf" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Swim Sets" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="swim-app-v47-combined.css?v=4.7" />
+  <link rel="stylesheet" href="swim-app-v50-combined.css?v=5.0" />
 </head>
 <body>
   <header class="app-header">
     <div>
       <p class="eyebrow">Metric only • 25m / 50m pools • IndexedDB + Supabase</p>
-      <h1>Swim Workout Library <span class="version">v4.7</span></h1>
+      <h1>Swim Workout Library <span class="version">v5.0</span></h1>
     </div>
   </header>
 
   <main class="shell">
     <section class="panel">
-      <div class="panel-heading">
-        <h2>Profile</h2>
-        <span class="status-pill">IndexedDB cache</span>
-      </div>
+      <div class="panel-heading"><h2>Profile</h2><span class="status-pill">IndexedDB cache</span></div>
       <div class="settings-grid">
         <label>Pool<select id="poolSelect"><option value="25">25m</option><option value="50">50m</option></select></label>
         <label>Max 100m time<input id="max100Input" value="1:20" inputmode="numeric" placeholder="1:20" /></label>
@@ -66,7 +63,7 @@
 
     <div class="layout">
       <section class="panel library-panel"><div class="panel-heading"><h2>Library</h2><span id="countBadge" class="status-pill">0 workouts</span></div><div id="workoutList" class="workout-list"></div></section>
-      <section class="panel detail-panel"><div id="emptyState" class="empty-state"><h2>Select or import a workout</h2><p>V4.7 uses cloud sync, IndexedDB caching, collapsible guidance, and numbered generic workout names.</p></div><article id="workoutDetail" class="hidden"></article></section>
+      <section class="panel detail-panel"><div id="emptyState" class="empty-state"><h2>Select or import a workout</h2><p>V5.0 uses tabs, random workout selection, intensity maps, and clickable set details.</p></div><article id="workoutDetail" class="hidden"></article></section>
     </div>
   </main>
 
@@ -78,6 +75,6 @@
   </script>
   <script src="sample-data.js"></script>
   <script src="app.js?v=4.3"></script>
-  <script src="swim-app-v47-combined.js?v=4.7"></script>
+  <script src="swim-app-v50-combined.js?v=5.0"></script>
 </body>
 </html>
