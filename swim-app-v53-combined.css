@@ -1,0 +1,112 @@
+/* Metric Swim Workout Library v5.1 combined patch */
+.app-tabs{display:flex;gap:8px;margin:0 0 16px;position:sticky;top:92px;z-index:9;background:rgba(248,250,252,.88);backdrop-filter:blur(12px);padding:8px 0}.tab-button{flex:1;background:#e0f2fe;color:var(--blue-dark);border:1px solid #bae6fd}.tab-button.active{background:var(--blue);color:#fff}.tab-panel{display:none}.tab-panel.active{display:block}.import-hidden{display:none!important}.cloud-collapsed>:not(.panel-heading){display:none!important}.technical-supabase-field{display:none!important}.compact-toggle{padding:8px 11px;font-size:.82rem;white-space:nowrap}.stroke-profile-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid #dbeafe}.coach-notes-collapsed ul,.coach-notes-collapsed p,.coach-notes-collapsed div:not(:first-child){display:none!important}.notes-toggle{margin-left:10px;vertical-align:middle}.coach-instructions-collapsed{display:none!important}.coach-instructions-toggle{margin:12px 0 6px;padding:9px 12px;font-size:.86rem}#randomWorkoutBtn{width:100%}#tab-library .library-panel{max-height:calc(100vh - 170px);display:flex;flex-direction:column}#tab-library .workout-list{max-height:none!important;overflow-y:auto!important;overscroll-behavior:contain;padding-right:6px}.intensity-map{background:#0b102f;color:#fff;border-radius:18px;padding:14px;margin:14px 0;box-shadow:0 10px 28px rgba(15,23,42,.18)}.intensity-layout{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:center}.intensity-ring{width:128px;height:128px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 12px rgba(255,255,255,.08)}.intensity-ring div{width:78px;height:78px;border-radius:50%;background:#0b102f;display:grid;place-content:center;text-align:center}.intensity-ring strong{font-size:1.05rem}.intensity-ring span{font-size:.7rem;color:#cbd5e1}.intensity-title{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px;font-size:.9rem}.intensity-title span{color:#cbd5e1}.intensity-bar{display:flex;height:26px;overflow:hidden;border-radius:999px;background:#1e293b}.intensity-segment{border:0;min-width:6px;border-right:1px solid rgba(255,255,255,.25);cursor:pointer}.intensity-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;color:#cbd5e1;font-size:.75rem}.clickable-step{cursor:pointer;border-radius:12px}.clickable-step:hover{background:rgba(14,165,233,.06)}.inline-step-detail{margin:0 0 12px;padding:14px;border:1px solid #bae6fd;border-radius:18px;background:#f0f9ff}.step-detail-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.step-detail-head button{background:#e0f2fe;color:var(--blue-dark);padding:7px 10px}.step-detail-visual{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;margin-bottom:12px}.mini-zone-dot{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 -4px 8px rgba(0,0,0,.2)}.mini-bars{display:grid;gap:8px}.bar-row{display:grid;grid-template-columns:42px 1fr 45px;gap:8px;align-items:center}.bar-row span{font-size:.75rem;color:#475569;font-weight:900}.bar-row strong{font-size:.8rem}.bar-track{height:12px;background:#dbeafe;border-radius:999px;overflow:hidden}.bar-fill{height:100%;background:#4f46e5;border-radius:999px}.bar-track.rest{background:#dcfce7}.bar-fill.rest{background:#22c55e}.step-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.step-detail-grid div{background:#fff;border:1px solid #dbeafe;border-radius:12px;padding:10px}.step-detail-grid span{display:block;color:#64748b;font-size:.75rem;font-weight:800}.step-detail-grid strong{display:block;margin-top:3px}@media(max-width:900px){.app-tabs{top:0}.stroke-profile-grid,.step-detail-grid{grid-template-columns:1fr 1fr}.intensity-layout{grid-template-columns:110px 1fr}.intensity-ring{width:106px;height:106px}.intensity-ring div{width:66px;height:66px}}@media(max-width:520px){.app-tabs{gap:4px}.tab-button{padding:9px 6px;font-size:.78rem}.stroke-profile-grid,.step-detail-grid{grid-template-columns:1fr}.intensity-layout{grid-template-columns:1fr}.intensity-ring{margin:auto}}
+
+/* v5.2 library filters and interactive ring */
+.library-filter-panel{background:var(--panel);border:1px solid #bfdbfe;border-radius:18px;padding:12px;margin:0 0 12px;box-shadow:var(--shadow)}
+.library-filter-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr auto;gap:10px;align-items:center}
+.ring-shell{position:relative;width:150px;height:150px;border:0;background:transparent;padding:0;margin:auto;display:grid;place-items:center;cursor:pointer}
+.interactive-ring{width:150px;height:150px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28))}
+.ring-step{cursor:pointer;opacity:.9;transition:opacity .15s,stroke-width .15s,filter .15s;pointer-events:stroke}
+.ring-step:hover,.ring-step.active{opacity:1;stroke-width:23;filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}
+.ring-center{position:absolute;inset:38px;border-radius:50%;background:#0b102f;color:white;display:grid;place-items:center;text-align:center;padding:8px;pointer-events:none}
+.ring-center strong{font-size:1rem;line-height:1}.ring-center em{font-style:normal;font-size:.68rem;color:#cbd5e1}.ring-center small{font-size:.55rem;color:#93c5fd}.ring-step-summary{margin-top:10px;padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.08);color:#e2e8f0;font-size:.8rem;line-height:1.35}.intensity-segment.active{outline:3px solid rgba(255,255,255,.75);outline-offset:-3px}
+@media(max-width:700px){.library-filter-grid{grid-template-columns:1fr}.ring-shell,.interactive-ring{width:128px;height:128px}.ring-center{inset:32px}}
+
+
+/* v5.3 visual refinement: cleaner circular workout format, no horizontal bar */
+.intensity-map {
+  background: linear-gradient(145deg, #09102c 0%, #11183c 55%, #0b102f 100%) !important;
+  border-radius: 24px !important;
+  padding: 18px !important;
+  overflow: hidden !important;
+}
+.intensity-layout {
+  grid-template-columns: 1fr !important;
+  justify-items: center !important;
+  text-align: center !important;
+  gap: 12px !important;
+}
+.intensity-side {
+  width: 100% !important;
+}
+.intensity-bar,
+.intensity-legend {
+  display: none !important;
+}
+.intensity-title {
+  justify-content: center !important;
+  margin-top: 2px !important;
+  margin-bottom: 8px !important;
+}
+.intensity-title strong {
+  font-size: 1rem !important;
+  letter-spacing: .04em !important;
+  text-transform: uppercase !important;
+  color: #e0f2fe !important;
+}
+.intensity-title span {
+  display: none !important;
+}
+.ring-shell {
+  width: min(72vw, 230px) !important;
+  height: min(72vw, 230px) !important;
+  margin: 4px auto 8px !important;
+}
+.interactive-ring {
+  width: 100% !important;
+  height: 100% !important;
+}
+.ring-center {
+  inset: 30% !important;
+  box-shadow: 0 0 30px rgba(59,130,246,.28), inset 0 0 0 1px rgba(255,255,255,.08) !important;
+}
+.ring-center strong {
+  font-size: clamp(1.15rem, 5vw, 1.65rem) !important;
+}
+.ring-center em {
+  font-size: .82rem !important;
+  font-weight: 800 !important;
+}
+.ring-center small {
+  display: none !important;
+}
+.ring-step {
+  opacity: .94 !important;
+  transition: stroke-width .18s ease, filter .18s ease, opacity .18s ease !important;
+}
+.ring-step:hover,
+.ring-step.active {
+  stroke-width: 26 !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.75)) !important;
+}
+.ring-step-summary {
+  max-width: 520px !important;
+  margin: 10px auto 0 !important;
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  color: #dbeafe !important;
+  font-size: .86rem !important;
+}
+.library-filter-panel {
+  position: sticky !important;
+  top: 64px !important;
+  z-index: 4 !important;
+}
+#tab-library .library-panel {
+  max-height: calc(100vh - 230px) !important;
+  overflow: hidden !important;
+}
+#tab-library .workout-list {
+  overflow-y: auto !important;
+  max-height: calc(100vh - 310px) !important;
+}
+@media (max-width: 520px) {
+  .ring-shell {
+    width: min(76vw, 210px) !important;
+    height: min(76vw, 210px) !important;
+  }
+  .intensity-map {
+    padding: 16px 12px !important;
+  }
+}
